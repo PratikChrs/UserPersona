@@ -8,6 +8,7 @@ A Python script that analyzes Reddit user profiles and generates detailed person
 - Generate detailed persona analysis including age, location, profession, interests, personality traits, and writing style
 - Export results as both Markdown and HTML files
 - Professional formatting with direct quotes and source citations
+- **Interactive HTML viewer** with Streamlit for enhanced persona visualization
 
 ## Prerequisites
 
@@ -23,7 +24,7 @@ Before running this script, you'll need:
 
 2. **Install required Python packages:**
    ```bash
-   pip install praw python-dotenv google-generativeai markdown
+   pip install praw python-dotenv google-generativeai markdown streamlit
    ```
 
 ## Reddit API Setup
@@ -88,9 +89,11 @@ GEMINI_API_KEY=your_gemini_api_key_here
 
 ## Usage
 
-1. **Run the script:**
+### Generating Personas
+
+1. **Run the main script:**
    ```bash
-   python reddit_persona_generator.py
+   python main.py
    ```
 
 2. **Enter a Reddit profile URL** when prompted. Examples:
@@ -105,6 +108,27 @@ GEMINI_API_KEY=your_gemini_api_key_here
 4. **Check the output** - files will be saved in the `output/` directory:
    - `persona_username.md` - Markdown version
    - `persona_username.html` - HTML version (styled)
+
+### Viewing HTML Personas (Interactive Viewer)
+
+For a better viewing experience of the generated persona profiles, you can use the interactive HTML viewer:
+
+1. **Launch the Streamlit viewer:**
+   ```bash
+   streamlit run app.py
+   ```
+
+2. **Open your web browser** and navigate to the local URL (usually `http://localhost:8501`)
+
+3. **Select a persona profile** from the dropdown menu to view any previously generated HTML profiles
+
+4. **Enhanced viewing features:**
+   - Clean, formatted HTML display
+   - Clickable Reddit URLs for easy verification
+   - Scrollable interface for long profiles
+   - Professional styling and formatting
+
+**Note for recruiters:** If you want to see a properly formatted HTML version of the persona profiles with enhanced readability and clickable links, simply run `streamlit run app.py` after generating personas to access the interactive viewer.
 
 ## Output Format
 
@@ -158,15 +182,21 @@ Each section includes direct quotes from the user's posts/comments and source UR
    - Ensure your Google Cloud project has the Gemini API enabled
 
 4. **Missing packages**
-   - Install required packages: `pip install praw python-dotenv google-generativeai markdown`
+   - Install required packages: `pip install praw python-dotenv google-generativeai markdown streamlit`
+
+5. **Streamlit viewer issues**
+   - Ensure Streamlit is installed: `pip install streamlit`
+   - Check that HTML files exist in the `output/` directory
+   - Verify your Gemini API key is correctly set in the .env file
 
 ## File Structure
 
 ```
 your-project/
-├── reddit_persona_generator.py
-├── .env
-├── output/
+├── main.py  # Main script for generating personas
+├── app.py                       # Streamlit viewer for HTML personas
+├── .env                        # Environment variables (API keys)
+├── output/                     # Generated persona files
 │   ├── persona_username.md
 │   └── persona_username.html
 └── README.md
